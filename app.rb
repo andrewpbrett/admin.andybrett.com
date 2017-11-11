@@ -15,3 +15,7 @@ end
 post '/link' do
 
 end
+
+get '/' do
+  'Hello world!'
+end
