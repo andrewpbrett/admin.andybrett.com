@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'yaml'
+require 'time'
 
 before do
   @config = YAML.load_file('config.yml')
@@ -9,7 +10,7 @@ before do
 end
 
 post '/photo' do
-  IO.write(@config["photopath"], params[:image])
+  IO.write("#{@config["photopath"]}/#{DateTime.now.strftime("%Y%m%d%H%M%S")}.jpg", params[:image])
 end
 
 post '/link' do
