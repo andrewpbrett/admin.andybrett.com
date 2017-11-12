@@ -10,13 +10,28 @@ before do
 end
 
 post '/photo' do
-  IO.write("#{@config["photopath"]}/#{DateTime.now.strftime("%Y%m%d%H%M%S")}.jpg", params[:image])
+  photo_filename = "#{DateTime.now.strftime("%Y%m%d%H%M%S")}.jpg"
+  IO.write("#{@config["photopath"]}/#{photo_filename}", params[:image])
+  markdown = <<EOF
+---
+type: photo
+layout: main
+caption: "#{params[:caption]}"
+filename: "#{photo_filename}"
+---
+EOF
+  markdown_filename = DateTime.now.strftime("%Y-%m-%d-")
+  if params[:caption] && !params[:caption].empty?
+    markdown_filename += params[:caption].gsub("\s", '-').downcase
+  else
+    markdown_filename += DateTime.now.strftime("%H-%M-")
+    markdown_filename += "photo"
+  end
+  markdown_filename += ".md"
+
+  IO.write("#{@config["photopostpath"]}/#{markdown_filename}")
 end
 
 post '/link' do
-
-end
-
-get '/' do
-  'Hello world!'
+  # TODO: write markdown file here too
 end
