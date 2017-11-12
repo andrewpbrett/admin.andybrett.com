@@ -30,6 +30,7 @@ EOF
   markdown_filename += ".md"
 
   IO.write("#{@config["photopostpath"]}/#{markdown_filename}", markdown)
+  200
 end
 
 post '/link' do
