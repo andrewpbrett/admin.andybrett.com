@@ -41,7 +41,7 @@ layout: main
 title: "#{params[:title]}"
 external_link: "#{params[:external_link]}"
 ---
-"#{params[:before] ? params[:comment]} : ''"
+"#{params[:before] ? params[:comment] : ''}"
 > #{params[:pullquote]}
 "#{params[:before] ? '' : params[:comment]}"
 EOF
