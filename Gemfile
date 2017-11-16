@@ -3,3 +3,4 @@ gem 'sinatra', :github => 'sinatra/sinatra'
 
 # other dependencies
 gem 'thin'
+gem 'exifr'
