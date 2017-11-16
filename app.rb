@@ -33,7 +33,7 @@ EOF
   end
   markdown_filename = post_date.strftime("%Y-%m-%d-")
   if params[:caption] && !params[:caption].empty?
-    markdown_filename += params[:caption].gsub("\s", '-').downcase
+    markdown_filename += params[:caption].gsub("\s", '-').gsub(/[^A-Za-z0-9\-]/, '').downcase
   else
     markdown_filename += post_date.strftime("%Y-%m-%d-%H")
     markdown_filename += "photo"
