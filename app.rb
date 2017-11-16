@@ -36,7 +36,7 @@ EOF
     markdown_filename += params[:caption].gsub("\s", '-').gsub(/[^A-Za-z0-9\-]/, '').downcase
   else
     markdown_filename += post_date.strftime("%Y-%m-%d-%H")
-    markdown_filename += "photo"
+    markdown_filename += "-photo"
   end
   markdown_filename += ".md"
 
