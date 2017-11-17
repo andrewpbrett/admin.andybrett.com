@@ -18,8 +18,6 @@ post '/photo' do
   exif = EXIFR::JPEG.new(photo_path)
   markdown = <<EOF
 ---
-type: photo
-layout: main
 caption: "#{params[:caption]}"
 filename: "#{photo_filename}"
 fstop: "#{exif.respond_to?(:f_number) ? "f/#{exif.f_number.to_f.to_s}" : "Unknown"}"
@@ -47,8 +45,6 @@ end
 post '/link' do
   markdown = <<EOF
 ---
-type: bookmark
-layout: main
 title: "#{params[:title]}"
 external_link: "#{params[:external_link]}"
 ---
