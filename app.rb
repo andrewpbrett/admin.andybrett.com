@@ -45,16 +45,16 @@ end
 post '/link' do
   markdown = <<EOF
 ---
-title: "#{params[:title]}"
-external_link: "#{params[:external_link]}"
+external_link: "#{params[:url]}"
 ---
-"#{params[:before] ? params[:comment] : ''}"
-> #{params[:pullquote]}
-"#{params[:before] ? '' : params[:comment]}"
+#{params[:before] ? params[:comment] : ''}
+#{params[:quote] && !params[:quote].empty? ? "> " + params[:quote].gsub(/[\n\r]{2,}/, "\n\n\>\s") : ""}
+
+#{params[:before] ? '' : params[:comment]}
 EOF
   markdown_filename = DateTime.now.strftime("%Y-%m-%d-")
   if params[:title] && !params[:title].empty?
-    markdown_filename += params[:caption].gsub("\s", '-').downcase
+    markdown_filename += params[:title].gsub("\s", '-').downcase
   else
     markdown_filename += DateTime.now.strftime("%Y-%m-%d-%H-%M-")
     markdown_filename += "bookmark"
