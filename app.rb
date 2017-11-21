@@ -12,6 +12,7 @@ before do
 end
 
 post '/photo' do
+  return 422 unless params[:image]
   photo_filename = "#{DateTime.now.strftime("%Y%m%d%H%M%S")}.jpg"
   photo_path = "#{@config["photopath"]}/#{photo_filename}"
   IO.write(photo_path, params[:image])
@@ -43,6 +44,7 @@ EOF
 end
 
 post '/link' do
+  return 422 unless params[:url]
   markdown = <<EOF
 ---
 external_link: "#{params[:url]}"
