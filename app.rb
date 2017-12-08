@@ -27,8 +27,10 @@ exposure: "#{exif.respond_to?(:exposure_time) ? "#{exif.exposure_time.to_s}" : "
 EOF
   if params[:postdatenow]
     post_date = Time.now
-  else
+  elsif exif.date_time_digitized
     post_date = exif.date_time_digitized
+  else
+    post_date = Time.now
   end
   markdown_filename = post_date.strftime("%Y-%m-%d-")
   if params[:caption] && !params[:caption].empty?
