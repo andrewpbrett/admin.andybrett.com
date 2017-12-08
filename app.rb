@@ -21,8 +21,8 @@ post '/photo' do
 ---
 caption: "#{params[:caption]}"
 filename: "#{photo_filename}"
-fstop: "#{exif.respond_to?(:f_number) ? "f/#{exif.f_number.to_f.to_s}" : "Unknown"}"
-exposure: "#{exif.respond_to?(:exposure_time) ? "#{exif.exposure_time.to_s}" : "Unknown"}"
+fstop: "#{exif.respond_to?(:f_number) && exif.f_number ? "f/#{exif.f_number.to_f.to_s}" : "Unknown"}"
+exposure: "#{exif.respond_to?(:exposure_time) && exif.exposure_time ? "#{exif.exposure_time.to_s}" : "Unknown"}"
 ---
 EOF
   if params[:postdatenow]
